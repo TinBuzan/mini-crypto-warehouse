@@ -47,7 +47,7 @@ with DAG(
         task_id='fetch_pumpfun_king_of_the_hill',
         existing_cluster_id='2931749995637435', # TODO: Set As env
         notebook_task={
-            'notebook_path': 'Workspace/Users/tinbuz.aws@gmail.com/dextools_handler', # TODO: Set As env var
+            'notebook_path': 'Workspace/Users/tinbuz.aws@gmail.com/fetch_pumpfun_king_of_the_hill', # TODO: Set As env var
         },
         libraries=[],
     )
