@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: staging_binance
+    description: "Binance data for token information"
+    database: default
+    schema: '4304875491083592'
+    tables:
+      - name: binance_data
+        description: "Binance ticker data"
+  - name: staging_dextools
+    description: "Dextools data for token information"
+    database: default
+    schema: '4304875491083592'
+    tables:
+      - name: dextools_data
+        description: "Dextools ticker data"

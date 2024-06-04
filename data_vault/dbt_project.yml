@@ -1,0 +1,27 @@
+
+name: 'data_vault'
+version: '1.0.0'
+
+profile: 'data_vault'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+models:
+  mini_data_vault:
+    raw_vault:
+      tags:
+        - 'raw_vault'
+        - 'hub'
+        - 'sat'
+        - 'link'
+      +materialized: incremental
+    marts:
+      tags:
+        - 'mart'
+      +materialized: incremental
+
