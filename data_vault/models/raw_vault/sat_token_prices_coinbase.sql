@@ -16,7 +16,7 @@ WITH source AS (
         rfq_volume_30day,
         load_date,
         record_source
-    FROM {{ ref('default.staging_coinbase') }}
+    FROM {{ ref('staging_coinbase') }}
     {% if is_incremental() %}
     WHERE load_date > (SELECT MAX(load_date) FROM {{ this }})
     {% endif %}

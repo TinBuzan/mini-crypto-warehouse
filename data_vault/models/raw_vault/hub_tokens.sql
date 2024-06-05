@@ -10,18 +10,18 @@ FROM (
         symbol,
         load_date,
         record_source
-    FROM {{ REF('default.staging_pumpfun_king_of_the_hill') }}
+    FROM {{ ref('staging_pumpfun_king_of_the_hill') }}
     UNION ALL
     SELECT 
         symbol,
         load_date,
         record_source
-    FROM {{ REF('default.staging_dexscreener') }}
+    FROM {{ ref('staging_dexscreener') }}
     UNION ALL
     SELECT 
         symbol,
         load_date,
         record_source
-    FROM {{ REF('default.staging_coinbase') }}
+    FROM {{ ref('staging_coinbase') }}
 )
 

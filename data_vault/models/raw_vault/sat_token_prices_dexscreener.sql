@@ -22,7 +22,7 @@ WITH source AS (
         volume_h24,
         load_date,
         record_source
-    FROM {{ ref('default.staging_dexscreener') }}
+    FROM {{ ref('staging_dexscreener') }}
     {% if is_incremental() %}
     WHERE load_date > (SELECT MAX(load_date) FROM {{ this }})
     {% endif %}

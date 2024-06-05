@@ -3,21 +3,24 @@
 WITH source AS (
     SELECT DISTINCT
         symbol,
+        exchange,
         load_date,
         record_source
-    FROM {{ ref('default.staging_coinbase') }}
+    FROM {{ ref('staging_coinbase') }}
     UNION ALL
     SELECT DISTINCT
         symbol,
         exchange,
         load_date,
         record_source
-    FROM {{ ref('default.staging_dexscreener') }}
+    FROM {{ ref('staging_dexscreener') }}
+    UNION ALL
     SELECT DISTINCT
         symbol,
+        exchange,
         load_date,
         record_source
-    FROM {{ ref('default.staging_pumpfun_king_of_the_hill') }}
+    FROM {{ ref('staging_pumpfun_king_of_the_hill') }}
 )
 
 SELECT

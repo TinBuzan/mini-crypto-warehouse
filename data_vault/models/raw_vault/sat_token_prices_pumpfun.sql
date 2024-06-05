@@ -12,7 +12,7 @@ WITH source AS (
         reply_count,
         load_date,
         record_source
-    FROM {{ ref('default.staging_pumpfun_king_of_the_hill') }}
+    FROM {{ ref('staging_pumpfun_king_of_the_hill') }}
     {% if is_incremental() %}
     WHERE load_date > (SELECT MAX(load_date) FROM {{ this }})
     {% endif %}
