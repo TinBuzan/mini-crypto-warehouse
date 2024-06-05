@@ -5,7 +5,7 @@ WITH source AS (
         symbol,
         load_date,
         record_source
-    FROM {{ ref('default.staging_pumpfun_king_of_the_hill') }}
+    FROM {{ ref('default.staging_coinbase') }}
     UNION ALL
     SELECT DISTINCT
         symbol,
@@ -13,6 +13,11 @@ WITH source AS (
         load_date,
         record_source
     FROM {{ ref('default.staging_dexscreener') }}
+    SELECT DISTINCT
+        symbol,
+        load_date,
+        record_source
+    FROM {{ ref('default.staging_pumpfun_king_of_the_hill') }}
 )
 
 SELECT
