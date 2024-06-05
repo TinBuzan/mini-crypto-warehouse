@@ -1,3 +1,5 @@
+-- WIP
+
 -- {{ config(materialized='view') }}
 -- SELECT
 --     h.crypto_symbol,
