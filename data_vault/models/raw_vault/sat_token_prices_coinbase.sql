@@ -1,46 +1,38 @@
-{{ config(materialized='table') }}
+{{ config(
+    materialized='incremental',
+    unique_key='crypto_price_key'
+) }}
+
 WITH source AS (
     SELECT DISTINCT
-        symbol,
-        priceChange,
-        priceChangePercent,
-        weightedAvgPrice,
-        prevClosePrice,
-        lastPrice,
-        lastQty,
-        bidPrice,
-        bidQty,
-        askPrice,
-        askQty,
-        openPrice,
-        highPrice,
-        lowPrice,
+        product_id,
+        open,
+        high,
+        low,
+        last,
         volume,
-        quoteVolume,
-        closeTime::timestamp AS price_date,
+        volume_30day,
+        rfq_volume_24hour,
+        rfq_volume_30day,
         load_date,
         record_source
-    FROM {{ ref('staging_binance') }}
+    FROM {{ ref('default.staging_coinbase') }}
+    {% if is_incremental() %}
+    WHERE load_date > (SELECT MAX(load_date) FROM {{ this }})
+    {% endif %}
 )
+
 SELECT
-    {{ generate_surrogate_key(['symbol', 'load_date']) }} AS crypto_price_key,
-    {{ generate_surrogate_key(['symbol']) }} AS crypto_key,
-    priceChange,
-    priceChangePercent,
-    weightedAvgPrice,
-    prevClosePrice,
-    lastPrice,
-    lastQty,
-    bidPrice,
-    bidQty,
-    askPrice,
-    askQty,
-    openPrice,
-    highPrice,
-    lowPrice,
+    {{ generate_surrogate_key(['product_id', 'load_date']) }} AS crypto_price_key,
+    {{ generate_surrogate_key(['product_id']) }} AS crypto_key,
+    open,
+    high,
+    low,
+    last,
     volume,
-    quoteVolume,
-    price_date,
+    volume_30day,
+    rfq_volume_24hour,
+    rfq_volume_30day,
     load_date,
     record_source
 FROM source
