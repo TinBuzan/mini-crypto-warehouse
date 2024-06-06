@@ -4,8 +4,9 @@
 ) }}
 
 WITH source AS (
-    SELECT DISTINCT
+    SELECT
         product_id,
+        symbol,
         open,
         high,
         low,
@@ -25,6 +26,8 @@ WITH source AS (
 SELECT
     {{ generate_surrogate_key(['product_id', 'load_date']) }} AS crypto_price_key,
     {{ generate_surrogate_key(['product_id']) }} AS crypto_key,
+    product_id,
+    symbol,
     open,
     high,
     low,
