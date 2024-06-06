@@ -1,7 +1,0 @@
-databricks:
-  host: "dbc-63e0d763-4a9f.cloud.databricks.com"
-  token: "dap***" #TODO: set as env var
-
-dbt:
-  profiles_dir: "~/.dbt/profiles"
-  project_dir: "../../datavault"
